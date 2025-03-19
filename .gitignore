@@ -9,3 +9,4 @@ bin
 /.classpath
 /.gitattributes
 /.project
+/target/
