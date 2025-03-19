@@ -1,11 +1,20 @@
 package com.mrazjava.typefall;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 public class Main {
+	
+	private static Logger logger = LoggerFactory.getLogger(Main.class);
+	
     public static void main(String[] args) throws Exception {
-        Injector injector = Guice.createInjector(new TypefallModule());
+        
+    	logger.debug("starting typefall...");
+    	
+    	Injector injector = Guice.createInjector(new TypefallModule());
         Game game = injector.getInstance(Game.class);
         game.run();
 //    	// Setup terminal and screen layers
