@@ -4,7 +4,12 @@ import java.util.Arrays;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;
@@ -20,12 +25,10 @@ public class Viewer {
     private static int columns = 10;
 
     public static void main(String[] args) throws IOException {
-       // System.out.println("Hello World");
-        /*System.out.println("\033[4;44;31mHello World\033[0mHello");
-        System.out.println("\033[2J");
-        System.out.println("\033[5H");*/
 
-    	log.info("howdy !!!");
+    	SpringApplication.run(Application.class, args);
+    	
+    	log.debug("howdy !!!");
     	
         enableRawMode();
         initEditor();
@@ -38,9 +41,18 @@ public class Viewer {
         }
 
         log.info("bye :-)");
+        log.debug("bye 2");
         System.exit(0);
     }
 
+    @Bean
+    ApplicationRunner applicationRunner(
+    		Environment environment,
+    		@Value("${logging.level.com.mrazjava:UNDEFINED}") String logComMrazjava) {
+        return args -> {
+            log.info("LOG LEVEL (com.mrazjava): " + logComMrazjava);
+        };
+    }
     private static void initEditor() {
         LibC.Winsize windowSize = getWindowSize();
         columns = windowSize.ws_col;
