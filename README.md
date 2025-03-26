@@ -1,5 +1,15 @@
 # Getting Started
 
+## Development & Logging
+Viewing logs while testing in console interferes with the actual console UI. Rather than 
+logging to `STD_OUT` during development, it may be more convenient 
+to log to a file (rolling file setup in log4j2.xml) and view logs with something like:
+
+```
+tail -f logs/application.log
+multitail -cS log4jnew logs/application.log
+```
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
