@@ -6,7 +6,7 @@ import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.Structure;
 
-interface LibC extends Library {
+public interface LibC extends Library {
 
     int SYSTEM_OUT_FD = 0;
     int ISIG = 1, ICANON = 2, ECHO = 10, TCSAFLUSH = 2,

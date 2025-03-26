@@ -2,33 +2,36 @@ package com.mrazjava.typefall;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.ApplicationRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
-//@SpringBootApplication
+@SpringBootApplication
+@Component
 public class Application {
 
 	private static Logger log = LoggerFactory.getLogger(Application.class);
 	
-	public static void main(String[] args) {
-		log.info("hello 1");
-		log.debug("hello 2");
-		SpringApplication.run(Application.class, args);
-		log.debug("hello 2a");
-		log.debug("bye 3");
-		log.info("bye 4");
+	@Autowired
+	private Viewer viewer;
+	
+	public static void main(String[] args) throws Exception {
+
+		ApplicationContext ctx = SpringApplication.run(Application.class, args);
+		
+		String applicationName = ctx.getEnvironment().getProperty("spring.application.name");
+		log.info("initializing {} ...", applicationName);
+		
+		Application typeFall = ctx.getBean(Application.class);
+		typeFall.start();
+		
+		log.info("exiting {} ...", applicationName);
 	}
 	
-	//@Bean
-    ApplicationRunner applicationRunner(
-    		Environment environment,
-    		@Value("${logging.level.com.mrazjava:UNDEFINED}") String logComMrazjava) {
-        return args -> {
-            log.info("LOG LEVEL (com.mrazjava): " + logComMrazjava);
-        };
-    }
+	void start() throws Exception {
+		viewer.start();
+		viewer.stop();
+	}
 }
