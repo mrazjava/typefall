@@ -10,3 +10,9 @@ bin
 /.gitattributes
 /.project
 /target/
+
+# Ignore logs
+/logs/
+
+# Ignore IDE
+/.settings/
