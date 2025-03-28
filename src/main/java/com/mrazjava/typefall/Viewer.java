@@ -1,15 +1,16 @@
 package com.mrazjava.typefall;
 import java.io.IOException;
 
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Component
 public class Viewer {
 
-	@Autowired
-	private Logger log;
+	//private static final Logger log = LoggerFactory.getLogger(Viewer.class);
 	
 	@Autowired
 	private Engine engine;

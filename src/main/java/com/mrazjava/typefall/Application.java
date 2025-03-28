@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Application {
 
-	private static Logger log = LoggerFactory.getLogger(Application.class);
+	private static final Logger log = LoggerFactory.getLogger(Application.class);
 	
 	@Autowired
 	private Viewer viewer;
