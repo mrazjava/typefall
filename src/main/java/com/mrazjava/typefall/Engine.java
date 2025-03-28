@@ -2,27 +2,19 @@ package com.mrazjava.typefall;
 
 import java.io.IOException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
 public class Engine {
 
-//	private static final Logger log = LoggerFactory.getLogger(Engine.class);
-
-    public void setRows(int rows) {
-		this.rows = rows;
-	}
-
-	public void setColumns(int columns) {
-		this.columns = columns;
-	}
-
+	@Setter
 	private int rows = -1;
+	
+	@Setter
     private int columns = -1;
 
     

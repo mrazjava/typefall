@@ -9,8 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class Viewer {
-
-	//private static final Logger log = LoggerFactory.getLogger(Viewer.class);
 	
 	@Autowired
 	private Engine engine;
