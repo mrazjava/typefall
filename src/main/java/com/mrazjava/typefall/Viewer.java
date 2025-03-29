@@ -4,11 +4,15 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mrazjava.typefall.csi.ClearScreen;
+import com.mrazjava.typefall.csi.CsiScreen;
+import com.mrazjava.typefall.csi.MoveCursor;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class Viewer {
+public class Viewer extends CsiScreen {
 	
 	@Autowired
 	private Engine engine;
@@ -60,8 +64,10 @@ public class Viewer {
     }
     
     private void exitRawMode() {
-        System.out.print("\033[2J");
-        System.out.print("\033[H");
+        //System.out.print("\033[2J");
+    	print(ClearScreen.entirely);
+    	print(MoveCursor.toUpperLeftCorner);
+        //System.out.print("\033[H");
         LibC.INSTANCE.tcsetattr(LibC.SYSTEM_OUT_FD, LibC.TCSAFLUSH, originalAttributes);
     }
 
