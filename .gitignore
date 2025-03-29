@@ -16,3 +16,4 @@ bin
 
 # Ignore IDE
 /.settings/
+/.idea/
